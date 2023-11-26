@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+            <ui:composition template="./template/template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:panel header="Gestion des services">
+                        <p:panelGrid  columns="6">
+                            <p:outputLabel value="photo : "></p:outputLabel>
+                            <p:inputText value="#{employeBean.employe.photo}"></p:inputText>
+                            <p:outputLabel value="dateNaissance : "></p:outputLabel>
+                            <p:inputText value="#{employeBean.employe.dateNaissance}"></p:inputText>
+                            <p:outputLabel value="nom : "></p:outputLabel>
+                            <p:inputText value="#{employeBean.employe.nom}"></p:inputText>
+                            <p:outputLabel value="prenom : "></p:outputLabel>
+                            <p:inputText value="#{employeBean.employe.prenom}"></p:inputText>
+                            <p:outputLabel value="chef : "></p:outputLabel>
+                            <p:inputText value="#{employeBean.employe.chef.id}"></p:inputText>
+                            <p:outputLabel value="service : "></p:outputLabel>
+                            <p:inputText value="#{employeBean.employe.service.id}"></p:inputText>
+                            <p:commandButton value="Envoyer" actionListener="#{employeBean.onCreateAction()}" update=":employes"></p:commandButton>
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+                <h:form id="employes">
+                    <p:panel header="Liste des employes">
+                        <p:dataTable var="e" value="#{employeBean.employe}">
+                            <p:column filterBy="#{e.photo}" headerText="photo">
+                                <p:outputLabel value="#{e.photo}"></p:outputLabel>
+                            </p:column>
+                            <p:column sortBy="#{e.dateNaissance}" headerText="dateNaissance">
+                                <p:outputLabel value="#{e.dateNaissance}"></p:outputLabel>
+                            </p:column>
+                            <p:column filterBy="#{e.nom}" headerText="nom">
+                                <p:outputLabel value="#{e.nom}"></p:outputLabel>
+                            </p:column>
+                            <p:column sortBy="#{e.prenom}" headerText="prenom">
+                                <p:outputLabel value="#{e.prenom}"></p:outputLabel>
+                            </p:column>
+                            <p:column filterBy="#{e.chef.id}" headerText="chef">
+                                <p:outputLabel value="#{e.chef.id}"></p:outputLabel>
+                            </p:column>
+                            <p:column sortBy="#{e.service.id}" headerText="service_id">
+                                <p:outputLabel value="#{e.service.id}"></p:outputLabel>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
